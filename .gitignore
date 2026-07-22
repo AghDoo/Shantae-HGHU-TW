@@ -1,0 +1,27 @@
+# Local workspace and build output
+/local/
+/build/
+/dist/
+/output/
+
+# Original or extracted game content
+*.assets
+*.bundle
+*.resource
+*.resS
+*.dll
+*.exe
+*_original.xml
+*_extracted.xml
+*_patched.xml
+
+# Temporary files
+*.bak
+*.tmp
+*.log
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
