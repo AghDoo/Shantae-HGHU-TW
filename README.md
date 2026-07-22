@@ -25,16 +25,16 @@ flowchart LR
         Release["GitHub Releases<br/>漢化補丁"]
     end
 
-    subgraph Private["私有／本機 Workspace"]
-        Submodule["公開 Repo Submodule"]
-        Original["遊戲原始文本與檔案"]
+    subgraph Local["非公開建置環境"]
+        TranslationSource["版本化翻譯來源"]
+        GameData["合法持有的遊戲資料"]
         Builder["建置工具"]
         Test["實機測試"]
     end
 
-    Translation -. "鎖定特定 Commit" .-> Submodule
-    Submodule --> Builder
-    Original --> Builder
+    Translation -. "提供已版本化譯文" .-> TranslationSource
+    TranslationSource --> Builder
+    GameData --> Builder
     Builder --> Test
     Test -. "上傳發布產物" .-> Release
 ```
@@ -46,8 +46,8 @@ flowchart TD
     PR["翻譯 Pull Request"] --> Validate["格式與內容檢查"]
     Validate --> Review["維護者 Review"]
     Review --> Merge["合併至 main"]
-    Merge --> Update["私有 Workspace 更新 Submodule"]
-    Update --> Build["本機建置漢化版本"]
+    Merge --> Update["非公開建置環境同步翻譯版本"]
+    Update --> Build["建置漢化版本"]
     Build --> Test["遊戲內實機測試"]
     Test --> Tag["建立版本 Tag"]
     Tag --> Release["發布 GitHub Release"]
@@ -62,7 +62,7 @@ docs/                       安裝、相容性與已知問題
 release/                    Release 格式與打包說明
 ```
 
-實際翻譯 CSV 將從本機 Workspace 審核後匯入；本 Repository 不收錄官方完整原始文本、遊戲資源或反編譯程式碼。
+實際翻譯 CSV 將由維護者審核後匯入；本 Repository 不收錄官方完整原始文本、遊戲資源或反編譯程式碼。
 
 ## 貢獻
 
