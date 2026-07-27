@@ -25,16 +25,16 @@ flowchart LR
         Release["GitHub Releases<br/>漢化補丁"]
     end
 
-    subgraph Private["私有／本機 Workspace"]
-        Submodule["公開 Repo Submodule"]
-        Original["遊戲原始文本與檔案"]
+    subgraph Local["非公開建置環境"]
+        TranslationSource["版本化翻譯來源"]
+        GameData["合法持有的遊戲資料"]
         Builder["建置工具"]
         Test["實機測試"]
     end
 
-    Translation -. "鎖定特定 Commit" .-> Submodule
-    Submodule --> Builder
-    Original --> Builder
+    Translation -. "提供已版本化譯文" .-> TranslationSource
+    TranslationSource --> Builder
+    GameData --> Builder
     Builder --> Test
     Test -. "上傳發布產物" .-> Release
 ```
@@ -46,9 +46,10 @@ flowchart TD
     PR["翻譯 Pull Request"] --> Validate["格式與內容檢查"]
     Validate --> Review["維護者 Review"]
     Review --> Merge["合併至 main"]
-    Merge --> Update["私有 Workspace 更新 Submodule"]
-    Update --> Build["本機建置漢化版本"]
-    Build --> Test["遊戲內實機測試"]
+    Merge --> Update["非公開建置環境鎖定完整 Commit"]
+    Update --> Build["驗證 ID、來源 hash 與格式 token"]
+    Build --> Rebuild["從原廠基線重新建置"]
+    Rebuild --> Test["遊戲內實機測試"]
     Test --> Tag["建立版本 Tag"]
     Tag --> Release["發布 GitHub Release"]
 ```
@@ -62,7 +63,26 @@ docs/                       安裝、相容性與已知問題
 release/                    Release 格式與打包說明
 ```
 
-實際翻譯 CSV 將從本機 Workspace 審核後匯入；本 Repository 不收錄官方完整原始文本、遊戲資源或反編譯程式碼。
+目前公開目錄為
+[`translations/zh-Hant-TW/strings.csv`](translations/zh-Hant-TW/strings.csv)。
+它只含不透明 ID、粗略區域、譯文、必要格式 token 與譯者備註；
+不含官方原文、PAK 名稱、offset 或私有結構座標。
+
+## 自動檢查
+
+Pull Request 會自動檢查：
+
+- 5,497 個 ID 是否完整、唯一、排序且未被修改。
+- `area` 與 `required_tokens` 等不可變欄位是否漂移。
+- 譯文是否空白、損壞或遺失格式 token。
+- `catalog.json` 的列數與 SHA-256 是否對應目前 CSV。
+
+本機可用下列命令做相同檢查：
+
+```powershell
+python tools/validate_translations.py --write-manifest
+python -m unittest discover -s tests -v
+```
 
 ## 貢獻
 

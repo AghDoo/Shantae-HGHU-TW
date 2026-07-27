@@ -15,6 +15,7 @@
 - 一個 PR 應聚焦於單一角色、場景、介面區域或明確問題。
 - 不要順手修改無關內容。
 - 不得修改或移除字串識別碼。
+- 不得修改 `area` 或 `required_tokens`；這兩欄由建置端維護。
 - 必須保留 `{0}`、`%s`、`<color>` 等變數與格式標記。
 - 如涉及情境、文字框或顯示問題，請附修改前後截圖。
 - 未經確認，不得提交官方完整原文、遊戲資源、執行檔或反編譯內容。
@@ -28,6 +29,17 @@
 - 欄位內的半形雙引號必須寫成兩個雙引號。
 - 不得使用簡單的 `Split(',')` 解析 CSV。
 - 使用試算表軟體後，請確認字串 ID、前導零與編碼未被自動轉換。
+- 儲存後執行 `python tools/validate_translations.py --write-manifest`，
+  將 `catalog.json` 一併提交。
+
+目前 CSV 欄位固定為：
+
+```text
+id,area,translated_tw,required_tokens,translator_note
+```
+
+可修改欄位只有 `translated_tw` 與 `translator_note`。公開 ID 只供 PR
+定位；真正的遊戲結構座標與官方原文不會放在此 Repository。
 
 ## 建議分支名稱
 
@@ -52,4 +64,5 @@ fix(ui): 統一存檔與讀取用語
 2. 修改 `translations/zh-Hant-TW/` 下的翻譯檔案。
 3. 建立 Pull Request 並說明修改理由。
 4. 通過格式檢查與維護者 Review。
-5. 合併後由維護者更新私有建置 Workspace、實機測試並安排 Release。
+5. 合併後由維護者鎖定完整 public commit，匯入非公開建置環境。
+6. 通過來源 hash、token、重建、反向抽取與實機測試後才安排 Release。
