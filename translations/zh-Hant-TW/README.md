@@ -2,19 +2,26 @@
 
 此目錄存放可透過 Pull Request 修改的台灣正體中文 CSV 譯文。
 
-實際 CSV 將由私有／本機 Workspace 審核後匯入。本目錄不得加入官方完整原文、遊戲資源或其他不適合公開散布的內容。
+本目錄不得加入官方完整原文、遊戲資源或其他不適合公開散布的內容。
 
-## 預計內容
+## 目前內容
 
 ```text
-dialogue.csv   角色對話
-ui.csv         選單與介面
-items.csv      道具與說明
-system.csv     系統訊息
-glossary.csv   專有名詞與慣用詞
+strings.csv    5,497 筆可透過 PR 修正的台灣正體中文譯文
+catalog.json   目錄列數、ID 範圍與 strings.csv SHA-256
 ```
 
-實際檔名與欄位應以目前建置工具使用的 CSV Schema 為準，不應為配合此目錄範例而任意重構既有資料。
+`strings.csv` 欄位為：
+
+```text
+id,area,translated_tw,required_tokens,translator_note
+```
+
+- 可修改：`translated_tw`、`translator_note`
+- 不可修改：`id`、`area`、`required_tokens`
+
+公開 ID 不包含 PAK、offset 或官方原文資訊。建置端另有不公開的 ID
+對照，只有完整 ID 集合、來源 hash 與 token 全部吻合才會接受 PR 譯文。
 
 ## 編輯前請閱讀
 

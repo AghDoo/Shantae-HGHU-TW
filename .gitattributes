@@ -6,3 +6,6 @@
 *.yml text eol=lf
 *.yaml text eol=lf
 *.ps1 text eol=crlf
+
+# 譯文欄位本身可能含有具語意的 CRLF；禁止 Git 改寫 CSV bytes。
+translations/zh-Hant-TW/strings.csv -text

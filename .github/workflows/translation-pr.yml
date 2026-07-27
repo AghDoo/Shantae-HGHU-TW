@@ -1,0 +1,41 @@
+name: 驗證翻譯 PR
+
+on:
+  pull_request:
+    paths:
+      - "translations/zh-Hant-TW/**"
+      - "tools/validate_translations.py"
+      - "tests/test_validate_translations.py"
+      - ".github/workflows/translation-pr.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "translations/zh-Hant-TW/**"
+      - "tools/validate_translations.py"
+      - "tests/test_validate_translations.py"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 執行單元測試
+        run: python -m unittest discover -s tests -v
+      - name: 驗證完整目錄
+        if: github.event_name != 'pull_request'
+        run: python tools/validate_translations.py
+      - name: 驗證 PR 與不可變欄位
+        if: github.event_name == 'pull_request'
+        run: >-
+          python tools/validate_translations.py
+          --base-ref "${{ github.event.pull_request.base.sha }}"
+          --allow-initial-catalog
