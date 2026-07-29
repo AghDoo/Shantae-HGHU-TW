@@ -91,6 +91,12 @@ python -m unittest discover -s tests -v
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [TRANSLATION_GUIDE.md](TRANSLATION_GUIDE.md)
 
+## 版本與發布
+
+公開漢化包採用 SemVer 2.0.0，且所有已公開的 `0.x`／prerelease 版本
+同樣不可靜默替換。版本格式、升版條件、相容性契約與 `1.0.0` 退出標準
+請參閱 [VERSIONING.md](VERSIONING.md)。
+
 ## 授權與權利聲明
 
 本專案為非官方社群漢化專案。程式碼授權請參閱 [LICENSE](LICENSE)，第三方商標、遊戲內容及翻譯相關聲明請參閱 [NOTICE.md](NOTICE.md)。
