@@ -45,14 +45,22 @@ flowchart LR
 flowchart TD
     PR["翻譯 Pull Request"] --> Validate["格式與內容檢查"]
     Validate --> Review["維護者 Review"]
-    Review --> Merge["合併至 main"]
+    Review --> Merge["合併至 main<br/>譯文已 Review，尚未實機驗證"]
     Merge --> Update["非公開建置環境鎖定完整 Commit"]
     Update --> Build["驗證 ID、來源 hash 與格式 token"]
     Build --> Rebuild["從原廠基線重新建置"]
     Rebuild --> Test["遊戲內實機測試"]
-    Test --> Tag["建立版本 Tag"]
+    Test --> Result{"實機測試通過？"}
+    Result -- 是 --> Tag["建立版本 Tag"]
+    Result -- 否 --> FollowUp["建立後續修正 PR"]
+    FollowUp --> PR
     Tag --> Release["發布 GitHub Release"]
 ```
+
+Public `main` 是已通過公開 Review 的譯文來源，不等於已通過實機驗證的
+Release。公開 PR 不要求在合併前產生候選 PAK；合併後才由非公開流水線
+鎖定完整 commit、建置候選包並執行實機測試。測試失敗時以新的修正 PR
+接續處理，未通過的 commit 不會發布。
 
 ## 目錄規劃
 

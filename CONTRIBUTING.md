@@ -60,9 +60,17 @@ fix(ui): 統一存檔與讀取用語
 
 ## Review 流程
 
+Public `main` 代表譯文已通過公開可執行的格式、內容與語境 Review，
+不代表該譯文已完成候選 PAK 建置或遊戲實機驗證。合併 PR 與核准
+Release 是兩個不同階段。
+
 1. Fork Repository 並建立分支。
 2. 修改 `translations/zh-Hant-TW/` 下的翻譯檔案。
 3. 建立 Pull Request 並說明修改理由。
-4. 通過格式檢查與維護者 Review。
+4. 通過 CSV、不可變欄位、格式 token、文字與語境 Review。
 5. 合併後由維護者鎖定完整 public commit，匯入非公開建置環境。
-6. 通過來源 hash、token、重建、反向抽取與實機測試後才安排 Release。
+6. 由非公開流水線完成來源 hash、token、重建與反向抽取驗證，產生
+   候選測試包。
+7. 候選包通過遊戲實機測試後才安排 Release。
+8. 若實測失敗，開啟新的修正 PR，並重新執行上述流程；不得發布未通過
+   實機驗證的 public commit。
