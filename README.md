@@ -4,6 +4,15 @@
 
 > Shantae: Half-Genie Hero Ultimate Edition — Traditional Chinese (Taiwan) localization project
 
+[![最新版本](https://img.shields.io/github/v/release/AghDoo/Shantae-HGHU-TW?include_prereleases&sort=semver)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
+[![翻譯驗證](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml/badge.svg)](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AghDoo/Shantae-HGHU-TW/blob/main/LICENSE)
+[![語系：zh-Hant-TW](https://img.shields.io/badge/locale-zh--Hant--TW-bf3f7f)](translations/zh-Hant-TW/)
+[![平台：Windows](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
+[![GitHub stars](https://img.shields.io/github/stars/AghDoo/Shantae-HGHU-TW?style=social)](https://github.com/AghDoo/Shantae-HGHU-TW/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/AghDoo/Shantae-HGHU-TW)](https://github.com/AghDoo/Shantae-HGHU-TW/issues)
+[![Star History](https://img.shields.io/badge/Star%20History-查看趨勢-FFD700?logo=github)](https://www.star-history.com/#AghDoo/Shantae-HGHU-TW&Date)
+
 ## 專案定位
 
 本 Repository 是公開的翻譯協作與版本發布入口，用於：
@@ -98,6 +107,15 @@ python -m unittest discover -s tests -v
 
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [TRANSLATION_GUIDE.md](TRANSLATION_GUIDE.md)
+
+## 支持專案
+
+如果這份漢化對你有幫助，歡迎在 Ko-fi 支持後續的翻譯校對、字型維護與
+測試工作：
+
+[![Ko-fi：支持專案](https://img.shields.io/badge/Ko--fi-支持專案-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/aghdoo)
+
+也可以直接前往 [Ko-fi / aghdoo](https://ko-fi.com/aghdoo)。
 
 ## 版本與發布
 
