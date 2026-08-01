@@ -1,0 +1,71 @@
+# 專有名詞對照表
+
+本表記錄《桑塔：半精靈英雄 終極版》台灣正體中文化專案目前採用的
+角色名、敵人名、地名與專有術語。
+
+現有對照主要參考系列續作《Shantae and the Seven Sirens》的官方繁體
+中文版，以維持系列譯名的一致性；本表未逐項標示個別譯名的來源。
+標記為「暫譯」的項目尚未完成最終確認，後續版本可能調整。
+
+若發現譯名不一致、語境不合或有可供核對的官方譯名，請先建立 Issue
+說明來源與適用情境，不要在大型 Pull Request 中順帶全面替換。
+
+## 角色與人名
+
+| 英文名稱 | 採用譯名 | 備註 |
+| --- | --- | --- |
+| Shantae | 桑塔 | |
+| Risky Boots | 里絲琦・布茲 | `Risky` 簡稱為「里絲琦」 |
+| Sky | 史凱 | |
+| Bolo | 博羅 | |
+| Rottytops | 羅蒂托普斯 | |
+| Uncle | 叔叔 | |
+| Uncle Mimic / Mimic Uncle | 米米克叔叔 | |
+| Mayor (Scuttlebutt) | 斯卡托巴特鎮長 | 簡稱為「鎮長」 |
+| Wrench | 扳手 | Sky 的鳥 |
+| Abner | 阿布納 | 殭屍兄弟；暫譯 |
+| Poe | 坡 | 殭屍兄弟；暫譯 |
+| Holly Lingerbean | 霍莉·林格賓 | |
+| Wilbur | 威爾伯 | |
+| Techno Baron | 科技男爵 | |
+| Ammo Baron | 彈藥男爵 | |
+| Hypno Baron | 催眠男爵 | |
+| Squid Baron | 魷魚男爵 | |
+
+## 怪物與敵人
+
+| 英文名稱 | 採用譯名 | 備註 |
+| --- | --- | --- |
+| Tinkerbat / Tinkerbats | 叮咯鬼 | 單複數共用 |
+
+## 地點與區域
+
+| 英文名稱 | 採用譯名 | 備註 |
+| --- | --- | --- |
+| Sequin Land | 亮片大陸 | |
+| Scuttle Town | 斯卡托鎮 | |
+| Genie Realm | 精靈界 | |
+| Main Street | 主街 | |
+| Mermaid Falls | 美人魚瀑布 | |
+| Cape Crustacean | 甲殼角 | |
+| Desert Tower | 沙漠高塔 | |
+
+## 專有術語與物品
+
+| 英文名稱 | 採用譯名 | 備註 |
+| --- | --- | --- |
+| Half-Genie Hero | 半精靈英雄 | |
+| Guardian Genie | 守護精靈 | |
+| Dynamo | 發電機 | |
+| Light Magic | 光明魔法 | |
+| Dark Magic | 黑暗魔法 | |
+| Relic | 遺跡／古物 | 依實際語境選用 |
+| Component / Component Part | 零件 | |
+
+## 維護原則
+
+- 同一角色、地點、物品或術語應依本表保持一致。
+- 一詞多義時，以遊戲中的實際語境決定譯法，並在必要時補充備註。
+- 暫譯項目可以透過 Issue 討論，但在取得共識前不要進行全域替換。
+- 新增或修改詞條時，應同步檢查既有譯文中受影響的用例。
+- 本表只收錄短詞條與必要備註，不收錄官方完整原文或大段遊戲文本。
