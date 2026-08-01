@@ -16,8 +16,8 @@ from typing import Iterable
 
 CATALOG_PATH = Path("translations/zh-Hant-TW/strings.csv")
 MANIFEST_PATH = Path("translations/zh-Hant-TW/catalog.json")
+MIGRATIONS_PATH = Path("translations/zh-Hant-TW/contract-migrations.json")
 FIELDS = ["id", "area", "translated_tw", "required_tokens", "translator_note"]
-IMMUTABLE_FIELDS = ["id", "area", "required_tokens"]
 ID_PATTERN = re.compile(r"^HGHU-TW-(\d{6})$")
 ALLOWED_AREAS = {"角色與劇情", "系統與介面", "製作名單", "DLC"}
 TOKEN_KEYS = {
@@ -48,6 +48,64 @@ def token_json(text: str) -> str:
         for name, pattern in PROTECTED_PATTERNS.items()
     }
     return json.dumps(tokens, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def canonical_tokens(value: object, label: str) -> str:
+    if not isinstance(value, dict) or set(value) != TOKEN_KEYS:
+        raise ValueError(f"{label} token schema 不符")
+    if any(
+        not isinstance(items, list)
+        or any(not isinstance(item, str) for item in items)
+        for items in value.values()
+    ):
+        raise ValueError(f"{label} token value 格式不符")
+    return json.dumps(
+        {key: sorted(items) for key, items in value.items()},
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+
+
+def parse_migrations(data: bytes, label: str) -> dict[tuple[str, str, str, str], str]:
+    document = json.loads(data.decode("utf-8", "strict"))
+    if not isinstance(document, dict) or set(document) != {"schema_version", "migrations"}:
+        raise ValueError(f"{label} schema 不符")
+    if document["schema_version"] != 1 or not isinstance(document["migrations"], list):
+        raise ValueError(f"{label} schema version 或 migrations 格式不符")
+    result: dict[tuple[str, str, str, str], str] = {}
+    required_fields = {"id", "field", "from_value", "to_value", "reason"}
+    for index, migration in enumerate(document["migrations"]):
+        item_label = f"{label} migrations[{index}]"
+        if not isinstance(migration, dict) or set(migration) != required_fields:
+            raise ValueError(f"{item_label} 欄位不符")
+        public_id = migration["id"]
+        if not isinstance(public_id, str) or not ID_PATTERN.fullmatch(public_id):
+            raise ValueError(f"{item_label} id 格式錯誤")
+        if migration["field"] != "required_tokens":
+            raise ValueError(f"{item_label} 只允許 required_tokens")
+        before = canonical_tokens(migration["from_value"], f"{item_label}.from_value")
+        after = canonical_tokens(migration["to_value"], f"{item_label}.to_value")
+        reason = migration["reason"]
+        if before == after:
+            raise ValueError(f"{item_label} 不得記錄無變更遷移")
+        if not isinstance(reason, str) or not reason.strip():
+            raise ValueError(f"{item_label} reason 不得空白")
+        key = (public_id, "required_tokens", before, after)
+        if key in result:
+            raise ValueError(f"{item_label} 重複")
+        result[key] = reason
+    return result
+
+
+def validate_migration_history(
+    current: dict[tuple[str, str, str, str], str],
+    base: dict[tuple[str, str, str, str], str],
+) -> set[tuple[str, str, str, str]]:
+    for key, reason in base.items():
+        if current.get(key) != reason:
+            raise ValueError("既有格式契約遷移不得刪除或修改")
+    return set(current) - set(base)
 
 
 def parse_catalog(data: bytes, label: str) -> list[dict[str, str]]:
@@ -118,13 +176,31 @@ def git_blob(repo: Path, ref: str, path: Path, *, allow_missing: bool = False) -
     return result.stdout
 
 
-def validate_base(current: list[dict[str, str]], base: list[dict[str, str]]) -> None:
+def validate_base(
+    current: list[dict[str, str]],
+    base: list[dict[str, str]],
+    new_migrations: set[tuple[str, str, str, str]],
+) -> None:
     if len(current) != len(base):
         raise ValueError(f"PR 不得新增或刪除字串：{len(current)} != {len(base)}")
     for current_row, base_row in zip(current, base, strict=True):
-        for field in IMMUTABLE_FIELDS:
+        for field in ("id", "area"):
             if current_row[field] != base_row[field]:
                 raise ValueError(f"PR 不得修改 {field}：{base_row['id']}")
+        if current_row["required_tokens"] != base_row["required_tokens"]:
+            migration = (
+                base_row["id"],
+                "required_tokens",
+                base_row["required_tokens"],
+                current_row["required_tokens"],
+            )
+            if migration not in new_migrations:
+                raise ValueError(
+                    f"PR 不得修改 required_tokens，除非附上精確契約遷移：{base_row['id']}"
+                )
+            new_migrations.remove(migration)
+    if new_migrations:
+        raise ValueError("新增的格式契約遷移沒有對應本次 catalog 變更")
 
 
 def validate_manifest(repo: Path, catalog_bytes: bytes, rows: list[dict[str, str]]) -> None:
@@ -173,6 +249,9 @@ def main() -> int:
     catalog_bytes = (repo / CATALOG_PATH).read_bytes()
     rows = parse_catalog(catalog_bytes, str(CATALOG_PATH))
     validate_rows(rows, str(CATALOG_PATH))
+    migrations = parse_migrations(
+        (repo / MIGRATIONS_PATH).read_bytes(), str(MIGRATIONS_PATH)
+    )
     if args.base_ref:
         base_bytes = git_blob(
             repo,
@@ -183,7 +262,16 @@ def main() -> int:
         if base_bytes is not None:
             base_rows = parse_catalog(base_bytes, f"{args.base_ref}:{CATALOG_PATH}")
             validate_rows(base_rows, "base catalog")
-            validate_base(rows, base_rows)
+            base_migration_bytes = git_blob(
+                repo, args.base_ref, MIGRATIONS_PATH, allow_missing=True
+            )
+            base_migrations = (
+                parse_migrations(base_migration_bytes, f"{args.base_ref}:{MIGRATIONS_PATH}")
+                if base_migration_bytes is not None
+                else {}
+            )
+            new_migrations = validate_migration_history(migrations, base_migrations)
+            validate_base(rows, base_rows, new_migrations)
     if args.write_manifest:
         write_manifest(repo, catalog_bytes, rows)
     validate_manifest(repo, catalog_bytes, rows)

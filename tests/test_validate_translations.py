@@ -37,13 +37,40 @@ class ValidateTranslationsTests(unittest.TestCase):
         base = row()
         changed = {**base, "area": "系統與介面"}
         with self.assertRaisesRegex(ValueError, "不得修改 area"):
-            VALIDATOR.validate_base([changed], [base])
+            VALIDATOR.validate_base([changed], [base], set())
+
+    def test_allows_exact_required_token_contract_migration(self) -> None:
+        base = row()
+        changed = {**base, "translated_tw": "第一行\n第二行"}
+        changed["required_tokens"] = VALIDATOR.token_json(changed["translated_tw"])
+        migration = {
+            (
+                base["id"],
+                "required_tokens",
+                base["required_tokens"],
+                changed["required_tokens"],
+            )
+        }
+        VALIDATOR.validate_base([changed], [base], migration)
+
+    def test_rejects_unused_contract_migration(self) -> None:
+        base = row()
+        migration = {
+            (base["id"], "required_tokens", base["required_tokens"], "unused")
+        }
+        with self.assertRaisesRegex(ValueError, "沒有對應"):
+            VALIDATOR.validate_base([base], [base], migration)
+
+    def test_rejects_contract_migration_history_rewrite(self) -> None:
+        key = ("HGHU-TW-000001", "required_tokens", "before", "after")
+        with self.assertRaisesRegex(ValueError, "不得刪除或修改"):
+            VALIDATOR.validate_migration_history({key: "新理由"}, {key: "原理由"})
 
     def test_allows_translation_and_note_change(self) -> None:
         base = row()
         changed = {**base, "translated_tw": "就在這裡！", "translator_note": "調整語氣"}
         changed["required_tokens"] = base["required_tokens"]
-        VALIDATOR.validate_base([changed], [base])
+        VALIDATOR.validate_base([changed], [base], set())
 
     def test_requires_canonical_token_json(self) -> None:
         candidate = row()
