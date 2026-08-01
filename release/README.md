@@ -1,6 +1,6 @@
 # Release 發布規範
 
-正式漢化包應附加於本 Repository 的 GitHub Release，不要將每一版 ZIP 或大型二進位檔直接 Commit 進 Git。
+正式中文化發布檔應附加於本 Repository 的 GitHub Release，不要將每一版 ZIP 或大型二進位檔直接 Commit 進 Git。
 
 ## 建議附件
 

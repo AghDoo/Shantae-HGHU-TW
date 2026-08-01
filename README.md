@@ -1,8 +1,10 @@
 # Shantae-HGHU-TW
 
-《桑塔：半精靈英雄 終極版》台灣正體中文漢化專案。
+**《桑塔：半精靈英雄 終極版》台灣正體中文化專案**
 
-> Shantae: Half-Genie Hero Ultimate Edition — Traditional Chinese (Taiwan) localization project
+> Shantae: Half-Genie Hero Ultimate Edition — Traditional Chinese (Taiwan) Localization Project
+
+提供台灣用語的正體中文翻譯與繁體中文補丁；本專案為非官方社群作品。
 
 [![最新版本](https://img.shields.io/github/v/release/AghDoo/Shantae-HGHU-TW?include_prereleases&sort=semver)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
 [![翻譯驗證](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml/badge.svg)](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml)
@@ -20,7 +22,7 @@
 - 維護 `zh-Hant-TW` 台灣正體中文譯文。
 - 接受翻譯修正 Pull Request。
 - 記錄翻譯規範、詞彙與已知問題。
-- 透過 GitHub Releases 發布經測試的漢化版本。
+- 透過 GitHub Releases 發布經測試的中文化版本。
 
 完整建置環境、遊戲原始文本與正版遊戲檔案不會存放於本 Repository。
 
@@ -31,7 +33,7 @@ flowchart LR
     subgraph Public["公開 Repository：Shantae-HGHU-TW"]
         Translation["translations/zh-Hant-TW<br/>CSV 譯文"]
         Docs["翻譯規範與文件"]
-        Release["GitHub Releases<br/>漢化補丁"]
+        Release["GitHub Releases<br/>繁體中文補丁"]
     end
 
     subgraph Local["非公開建置環境"]
@@ -112,7 +114,7 @@ python -m unittest discover -s tests -v
 
 ## 支持專案
 
-如果這份漢化對你有幫助，歡迎在 Ko-fi 支持後續的翻譯校對、字型維護與
+如果這份中文化對你有幫助，歡迎在 Ko-fi 支持後續的翻譯校對、字型維護與
 測試工作：
 
 [![Ko-fi：支持專案](https://img.shields.io/badge/Ko--fi-支持專案-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/aghdoo)
@@ -121,10 +123,13 @@ python -m unittest discover -s tests -v
 
 ## 版本與發布
 
-公開漢化包採用 SemVer 2.0.0，且所有已公開的 `0.x`／prerelease 版本
+公開中文化版本採用 SemVer 2.0.0，且所有已公開的 `0.x`／prerelease 版本
 同樣不可靜默替換。版本格式、升版條件、相容性契約與 `1.0.0` 退出標準
 請參閱 [VERSIONING.md](VERSIONING.md)。
 
+正式專案名、安裝器、Release、資產檔名與 Credit 的用詞分工請參閱
+[NAMING.md](NAMING.md)。
+
 ## 授權與權利聲明
 
-本專案為非官方社群漢化專案。程式碼授權請參閱 [LICENSE](LICENSE)，第三方商標、遊戲內容及翻譯相關聲明請參閱 [NOTICE.md](NOTICE.md)。
+本專案為非官方社群中文化專案。程式碼授權請參閱 [LICENSE](LICENSE)，第三方商標、遊戲內容及翻譯相關聲明請參閱 [NOTICE.md](NOTICE.md)。
