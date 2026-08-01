@@ -12,6 +12,10 @@
 [![語系：zh-Hant-TW](https://img.shields.io/badge/locale-zh--Hant--TW-bf3f7f)](translations/zh-Hant-TW/)
 [![平台：Windows](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
 
+[![GitHub stars](https://img.shields.io/github/stars/AghDoo/Shantae-HGHU-TW?style=social)](https://github.com/AghDoo/Shantae-HGHU-TW/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/AghDoo/Shantae-HGHU-TW)](https://github.com/AghDoo/Shantae-HGHU-TW/issues)
+[![Star History](https://img.shields.io/badge/Star%20History-查看趨勢-FFD700?logo=github)](https://www.star-history.com/#AghDoo/Shantae-HGHU-TW&Date)
+
 ## 下載
 
 前往 [GitHub Releases](https://github.com/AghDoo/Shantae-HGHU-TW/releases) 下載最新版本的 Windows 安裝程式。
