@@ -59,12 +59,13 @@ Windows SmartScreen 可能因安裝程式尚未使用 Authenticode 憑證簽署�
 
 ## 翻譯貢獻
 
-本 Repository 也是公開翻譯協作入口，接受錯字、語氣、專有名詞、UI 長度與換行等修正。
+本 Repository 也是公開翻譯協作入口，接受錯字、語氣、專有名詞、UI 長度與換行等修正。角色名、地名與術語請先查閱[專有名詞對照表](docs/GLOSSARY.md)。
 
 提交前請閱讀：
 
 - [貢獻指南](CONTRIBUTING.md)
 - [翻譯規範](TRANSLATION_GUIDE.md)
+- [專有名詞對照表](docs/GLOSSARY.md)
 - [翻譯 PR Template](.github/PULL_REQUEST_TEMPLATE/translation.md)
 
 Pull Request 會自動檢查：
@@ -83,6 +84,7 @@ python -m unittest discover -s tests -v
 
 ## 專案與發布文件
 
+- [專有名詞對照表](docs/GLOSSARY.md)
 - [命名規範](NAMING.md)
 - [版本規則](VERSIONING.md)
 - [Release 發布規範](release/README.md)
