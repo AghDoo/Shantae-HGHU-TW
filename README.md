@@ -8,128 +8,88 @@
 
 [![最新版本](https://img.shields.io/github/v/release/AghDoo/Shantae-HGHU-TW?include_prereleases&sort=semver)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
 [![翻譯驗證](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml/badge.svg)](https://github.com/AghDoo/Shantae-HGHU-TW/actions/workflows/translation-pr.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/AghDoo/Shantae-HGHU-TW/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![語系：zh-Hant-TW](https://img.shields.io/badge/locale-zh--Hant--TW-bf3f7f)](translations/zh-Hant-TW/)
 [![平台：Windows](https://img.shields.io/badge/platform-Windows-0078D4?logo=windows&logoColor=white)](https://github.com/AghDoo/Shantae-HGHU-TW/releases)
-[![GitHub stars](https://img.shields.io/github/stars/AghDoo/Shantae-HGHU-TW?style=social)](https://github.com/AghDoo/Shantae-HGHU-TW/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/AghDoo/Shantae-HGHU-TW)](https://github.com/AghDoo/Shantae-HGHU-TW/issues)
-[![Star History](https://img.shields.io/badge/Star%20History-查看趨勢-FFD700?logo=github)](https://www.star-history.com/#AghDoo/Shantae-HGHU-TW&Date)
 
-## 專案定位
+## 下載
 
-本 Repository 是公開的翻譯協作與版本發布入口，用於：
+前往 [GitHub Releases](https://github.com/AghDoo/Shantae-HGHU-TW/releases) 下載最新版本的 Windows 安裝程式。
 
-- 維護 `zh-Hant-TW` 台灣正體中文譯文。
-- 接受翻譯修正 Pull Request。
-- 記錄翻譯規範、詞彙與已知問題。
-- 透過 GitHub Releases 發布經測試的中文化版本。
+目前公開版本仍屬 Beta 測試階段。安裝前請確認：
 
-完整建置環境、遊戲原始文本與正版遊戲檔案不會存放於本 Repository。
+- 作業系統為 Windows 10 或 Windows 11。
+- 已合法持有並安裝 Steam 版 Ultimate Edition（App ID `764300`）。
+- 遊戲檔案符合該版本列出的已知原廠基線。
+- 安裝與解除安裝期間均已關閉遊戲。
 
-## Repository 關係
+Windows SmartScreen 可能因安裝程式尚未使用 Authenticode 憑證簽署而顯示警告。執行前請核對 Release 頁面列出的 SHA-256。
 
-```mermaid
-flowchart LR
-    subgraph Public["公開 Repository：Shantae-HGHU-TW"]
-        Translation["translations/zh-Hant-TW<br/>CSV 譯文"]
-        Docs["翻譯規範與文件"]
-        Release["GitHub Releases<br/>繁體中文補丁"]
-    end
+完整操作方式請參閱 [安裝與解除安裝](docs/INSTALLATION.md)；遇到問題請先閱讀 [疑難排解](docs/TROUBLESHOOTING.md)。
 
-    subgraph Local["非公開建置環境"]
-        TranslationSource["版本化翻譯來源"]
-        GameData["合法持有的遊戲資料"]
-        Builder["建置工具"]
-        Test["實機測試"]
-    end
+## 安裝方式
 
-    Translation -. "提供已版本化譯文" .-> TranslationSource
-    TranslationSource --> Builder
-    GameData --> Builder
-    Builder --> Test
-    Test -. "上傳發布產物" .-> Release
-```
+1. 關閉遊戲。
+2. 從最新 Release 下載 `Shantae-HGHU-TW-{版本}-setup.exe`。
+3. 執行安裝程式，確認偵測到受支援的原廠遊戲檔案後完成安裝。
 
-## 翻譯 PR 資料流
+再次執行同一份 EXE，即可解除安裝繁體中文化並還原原廠檔案。安裝完成後，遊戲目錄 `.hghu-tw/installer/` 也會保存本機備援解除安裝程式。
 
-```mermaid
-flowchart TD
-    PR["翻譯 Pull Request"] --> Validate["格式與內容檢查"]
-    Validate --> Review["維護者 Review"]
-    Review --> Merge["合併至 main<br/>譯文已 Review，尚未實機驗證"]
-    Merge --> Update["非公開建置環境鎖定完整 Commit"]
-    Update --> Build["驗證 ID、來源 hash 與格式 token"]
-    Build --> Rebuild["從原廠基線重新建置"]
-    Rebuild --> Test["遊戲內實機測試"]
-    Test --> Result{"實機測試通過？"}
-    Result -- 是 --> Tag["建立版本 Tag"]
-    Result -- 否 --> FollowUp["建立後續修正 PR"]
-    FollowUp --> PR
-    Tag --> Release["發布 GitHub Release"]
-```
+安裝器採 fail-closed 設計：偵測到未知修改、不完整的安裝狀態或損毀的備份時會停止操作，不會推測或強制覆寫檔案。
 
-Public `main` 是已通過公開 Review 的譯文來源，不等於已通過實機驗證的
-Release。公開 PR 不要求在合併前產生候選 PAK；合併後才由非公開流水線
-鎖定完整 commit、建置候選包並執行實機測試。測試失敗時以新的修正 PR
-接續處理，未通過的 commit 不會發布。
+## 專案狀態
 
-## 目錄規劃
+- Locale：`zh-Hant-TW`
+- 公開譯文目錄：5,497 筆
+- 發布形式：單檔 Windows 安裝程式與必要驗證資料
+- 目前階段：公開 Beta／Pre-release
 
-```text
-translations/zh-Hant-TW/   可透過 PR 修改的 CSV 譯文
-docs/                       安裝、相容性與已知問題
-.github/                    PR Template 與自動檢查
-release/                    Release 格式與打包說明
-```
+公開 `main` 是已通過翻譯 Review 的來源，不等於已通過實機驗證的 Release。每個候選版本仍須由非公開建置環境鎖定完整 commit、重新建置、回套驗證並完成遊戲內測試後才會發布。
 
-目前公開目錄為
-[`translations/zh-Hant-TW/strings.csv`](translations/zh-Hant-TW/strings.csv)。
-它只含不透明 ID、粗略區域、譯文、必要格式 token 與譯者備註；
-不含官方原文、PAK 名稱、offset 或私有結構座標。
+## 問題回報
 
-## 自動檢查
+- 安裝、解除安裝或還原問題：建立「安裝器／解除安裝問題」Issue。
+- 翻譯錯誤、文字截斷或顯示問題：建立「翻譯／顯示問題」Issue。
+
+請勿上傳完整遊戲 PAK、官方完整原始文本、私人路徑、個人資料或其他未經授權的遊戲內容。
+
+## 翻譯貢獻
+
+本 Repository 也是公開翻譯協作入口，接受錯字、語氣、專有名詞、UI 長度與換行等修正。
+
+提交前請閱讀：
+
+- [貢獻指南](CONTRIBUTING.md)
+- [翻譯規範](TRANSLATION_GUIDE.md)
+- [翻譯 PR Template](.github/PULL_REQUEST_TEMPLATE/translation.md)
 
 Pull Request 會自動檢查：
 
 - 5,497 個 ID 是否完整、唯一、排序且未被修改。
 - `area` 與 `required_tokens` 等不可變欄位是否漂移。
-- 維護者核准的格式契約遷移是否精確對應 catalog 變更，且歷史紀錄保持
-  追加式、不可刪改。
-- 譯文是否空白、損壞或遺失格式 token。
+- 格式 token、換行與契約遷移是否一致。
 - `catalog.json` 的列數與 SHA-256 是否對應目前 CSV。
 
-本機可用下列命令做相同檢查：
+本機可使用：
 
 ```powershell
 python tools/validate_translations.py --write-manifest
 python -m unittest discover -s tests -v
 ```
 
-## 貢獻
+## 專案與發布文件
 
-提交翻譯修正前，請閱讀：
-
-- [CONTRIBUTING.md](CONTRIBUTING.md)
-- [TRANSLATION_GUIDE.md](TRANSLATION_GUIDE.md)
+- [命名規範](NAMING.md)
+- [版本規則](VERSIONING.md)
+- [Release 發布規範](release/README.md)
+- [權利與內容聲明](NOTICE.md)
 
 ## 支持專案
 
-如果這份中文化對你有幫助，歡迎在 Ko-fi 支持後續的翻譯校對、字型維護與
-測試工作：
-
-[![Ko-fi：支持專案](https://img.shields.io/badge/Ko--fi-支持專案-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/aghdoo)
-
-也可以直接前往 [Ko-fi / aghdoo](https://ko-fi.com/aghdoo)。
-
-## 版本與發布
-
-公開中文化版本採用 SemVer 2.0.0，且所有已公開的 `0.x`／prerelease 版本
-同樣不可靜默替換。版本格式、升版條件、相容性契約與 `1.0.0` 退出標準
-請參閱 [VERSIONING.md](VERSIONING.md)。
-
-正式專案名、安裝器、Release、資產檔名與 Credit 的用詞分工請參閱
-[NAMING.md](NAMING.md)。
+如果這份中文化對你有幫助，歡迎透過 [Ko-fi](https://ko-fi.com/aghdoo) 支持後續的翻譯校對、字型維護與測試工作。
 
 ## 授權與權利聲明
 
-本專案為非官方社群中文化專案。程式碼授權請參閱 [LICENSE](LICENSE)，第三方商標、遊戲內容及翻譯相關聲明請參閱 [NOTICE.md](NOTICE.md)。
+本專案為非官方社群中文化專案，與 WayForward Technologies 或其他相關權利人沒有隸屬、授權、贊助或背書關係。
+
+程式碼與文件授權請參閱 [LICENSE](LICENSE)；第三方商標、遊戲內容及翻譯相關聲明請參閱 [NOTICE.md](NOTICE.md)。
