@@ -1,0 +1,77 @@
+name: 翻譯／顯示問題
+description: 回報錯字、語氣、專有名詞、文字截斷或顯示異常
+title: "[Translation] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感謝協助改善台灣正體中文翻譯。請勿上傳完整遊戲檔案或官方完整原始文本。
+
+  - type: input
+    id: version
+    attributes:
+      label: 中文化版本
+      placeholder: 0.9.0-beta.1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problem-type
+    attributes:
+      label: 問題類型
+      options:
+        - 錯字或標點
+        - 語句不自然／角色語氣
+        - 專有名詞不一致
+        - 文字截斷／超框
+        - 方框字／字型問題
+        - 換行或格式異常
+        - 玩家可見英文殘留
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: 發生位置
+      description: 請填角色、場景、關卡、選單或介面區域。
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-text
+    attributes:
+      label: 目前顯示文字
+      description: 只需貼出問題句或短段落，不要上傳完整官方文本。
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue
+    attributes:
+      label: 問題說明
+      description: 說明為何目前譯文或顯示方式有問題。
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 建議修改
+      description: 可選填建議譯法或排版方式。
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 畫面或補充資訊
+      description: 如涉及情境、文字框或顯示問題，建議附上不含個資的截圖。
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: 確認事項
+      options:
+        - label: 我未上傳完整遊戲 PAK、官方完整原始文本或其他未經授權的遊戲內容。
+          required: true
