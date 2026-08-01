@@ -13,7 +13,8 @@
 | 安裝器視窗標題 | `Shantae HGHU 台灣正體中文化管理程式 {SemVer}` |
 | Release Title | `Shantae HGHU 台灣正體中文補丁 v{SemVer}` |
 | Git tag | `v{SemVer}` |
-| Release asset | `Shantae-HGHU-TW-{SemVer}.zip` |
+| Installer asset | `Shantae-HGHU-TW-{SemVer}-setup.exe` |
+| Archive asset | `Shantae-HGHU-TW-{SemVer}.zip` |
 | Credit | 台灣正體中文化 by AghDoo |
 | GitHub About | 《桑塔：半精靈英雄 終極版》台灣正體中文化專案｜繁體中文補丁 |
 
@@ -37,3 +38,5 @@
 - 安裝器視窗標題顯示純 SemVer，不加 `v`，以對齊安裝器內部版本欄位。
 - 已公開的 Release 名稱與資產不可為了套用新命名而回頭修改；本規範只
   約束後續版本。
+- 單檔安裝器版本的公開 Release 只提供 Installer asset；Archive asset
+  僅適用明確提供差分壓縮包的版本，未列入單檔安裝器版本的公開資產。
