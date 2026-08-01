@@ -56,8 +56,8 @@ SemVer 對 `0.y.z` 初始開發階段允許較大的變動；本專案為了讓�
 - 下列任一事件先發生時，該版本即視為已公開：
   1. Git tag 出現在公開 remote。
   2. GitHub Release 不再是 Draft。
-- 已公開版本的 tag、ZIP、index、security audit、Release notes 與其他
-  assets 均不可用不同內容覆蓋。
+- 已公開版本的 tag、主要發布資產、release index、security audit、
+  Release notes 與其他 assets 均不可用不同內容覆蓋。
 - 即使尚無已知下載，也不得把相同版本刪除後用不同內容重發。
 - 若公開版本有嚴重問題，應將 Release 標示為 withdrawn／有問題，說明
   原因及替代版本，再發布遞增後的新版本。
@@ -119,7 +119,14 @@ Blocker 包含：
 - 中文化版本與 prerelease／stable 狀態。
 - 對應的公開譯文 commit。
 - 建置工具與資安工具版本。
-- ZIP、release index 與 security audit 的 SHA-256。
+- 主要發布資產、release index 與 security audit 的 SHA-256。
 - 支援的遊戲版本／原廠基線。
-- 玩家可見變更、已知問題及升級／移除注意事項。
+- 玩家可見變更、已知問題及該版本特有的升級／移除注意事項。
 - 若撤回舊版，撤回原因與替代版本。
+
+主要發布資產依版本型態擇一：
+
+- 單檔安裝器：`Shantae-HGHU-TW-{SemVer}-setup.exe`
+- 差分壓縮包：`Shantae-HGHU-TW-{SemVer}.zip`
+
+固定的安裝、解除安裝與問題回報流程應維護於 README、`docs/` 與 Issue Forms，不需要在每一版 Release notes 重複。
