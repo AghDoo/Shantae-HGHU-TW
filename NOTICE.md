@@ -1,6 +1,6 @@
 # 權利與內容聲明
 
-本專案為非官方社群漢化專案，與 WayForward Technologies 或其他相關權利人沒有隸屬、授權、贊助或背書關係。
+本專案為非官方社群中文化專案，與 WayForward Technologies 或其他相關權利人沒有隸屬、授權、贊助或背書關係。
 
 `Shantae`、`Shantae: Half-Genie Hero Ultimate Edition`、角色、商標、遊戲文本、圖像、音效及其他遊戲資產之權利均屬其各自權利人所有。
 
@@ -17,6 +17,6 @@ ID；`required_tokens` 只記錄建置所需的格式標記，不是官方原文
 GitHub Release 只提供針對使用者合法持有原廠檔案的二進位差分、
 本專案安裝腳本與必要的第三方工具授權聲明。
 
-使用者必須自行合法持有相容版本的遊戲，並依 Release 說明套用漢化內容。
+使用者必須自行合法持有相容版本的遊戲，並依 Release 說明套用中文化內容。
 
 Repository 根目錄的 MIT License 僅適用於本專案有權授權的自行撰寫程式碼與文件，不代表第三方遊戲內容、商標或衍生素材受到 MIT License 授權。
