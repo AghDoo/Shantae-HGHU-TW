@@ -91,6 +91,8 @@ Pull Request 會自動檢查：
 
 - 5,497 個 ID 是否完整、唯一、排序且未被修改。
 - `area` 與 `required_tokens` 等不可變欄位是否漂移。
+- 維護者核准的格式契約遷移是否精確對應 catalog 變更，且歷史紀錄保持
+  追加式、不可刪改。
 - 譯文是否空白、損壞或遺失格式 token。
 - `catalog.json` 的列數與 SHA-256 是否對應目前 CSV。
 

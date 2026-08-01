@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "migrations": [
+    {
+      "id": "HGHU-TW-001112",
+      "field": "required_tokens",
+      "from_value": {
+        "brace_token": [],
+        "escaped_control": [],
+        "literal_newline": [],
+        "markup_tag": [],
+        "printf_token": [],
+        "var_tag": []
+      },
+      "to_value": {
+        "brace_token": [],
+        "escaped_control": [],
+        "literal_newline": [
+          "\n"
+        ],
+        "markup_tag": [],
+        "printf_token": [],
+        "var_tag": []
+      },
+      "reason": "Title_Legal 保留官方版權句並以第二行顯示專案 Credit；LF 已完成 LTB round-trip 與實機顯示驗證。"
+    }
+  ]
+}
