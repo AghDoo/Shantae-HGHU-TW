@@ -16,6 +16,48 @@
 [![GitHub issues](https://img.shields.io/github/issues/AghDoo/Shantae-HGHU-TW)](https://github.com/AghDoo/Shantae-HGHU-TW/issues)
 [![Star History](https://img.shields.io/badge/Star%20History-查看趨勢-FFD700?logo=github)](https://www.star-history.com/#AghDoo/Shantae-HGHU-TW&Date)
 
+## 畫面預覽
+
+<p align="center">
+  <a href="docs/assets/readme/hero-localized.webp">
+    <img src="docs/assets/readme/hero-localized.webp" alt="《桑塔：半精靈英雄 終極版》台灣正體中文化遊戲畫面" width="100%">
+  </a>
+</p>
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <a href="docs/assets/readme/preview-dialogue.webp">
+        <img src="docs/assets/readme/preview-dialogue.webp" alt="台灣正體中文角色對話預覽" width="100%">
+      </a>
+      <br>
+      <sub>角色對話與台灣用語翻譯</sub>
+    </td>
+    <td width="50%" align="center">
+      <a href="docs/assets/readme/preview-ui.webp">
+        <img src="docs/assets/readme/preview-ui.webp" alt="台灣正體中文遊戲介面預覽" width="100%">
+      </a>
+      <br>
+      <sub>選單、說明文字與遊戲介面</sub>
+    </td>
+  </tr>
+</table>
+
+<details>
+<summary>查看 Windows 安裝器畫面</summary>
+
+<br>
+
+<p align="center">
+  <a href="docs/assets/readme/preview-installer.webp">
+    <img src="docs/assets/readme/preview-installer.webp" alt="Shantae-HGHU-TW Windows 安裝器畫面" width="80%">
+  </a>
+</p>
+
+</details>
+
+> 預覽圖取自 Beta 測試版本，實際文字與介面可能隨後續校對調整。遊戲畫面、角色與相關視覺內容之權利均屬其各自權利人所有。
+
 ## 下載
 
 前往 [GitHub Releases](https://github.com/AghDoo/Shantae-HGHU-TW/releases) 下載最新版本的 Windows 安裝程式。
