@@ -90,6 +90,15 @@ python -m unittest discover -s tests -v
 - [Release 發布規範](release/README.md)
 - [權利與內容聲明](NOTICE.md)
 
+## 譯名參考與致謝
+
+本專案在系列譯名整理與翻譯過程中，參考了：
+
+- 《Shantae and the Seven Sirens》官方繁體中文版
+- 《香緹：半精靈英雄》正體中文模組（CodeBay.IN 出品）
+
+感謝上述官方在地化作品與社群中文化團隊留下的翻譯成果，為本專案的系列譯名研究與一致性整理提供參考。更完整的說明請參閱[專有名詞對照表](docs/GLOSSARY.md#譯名參考與致謝)。
+
 ## 支持專案
 
 如果這份中文化對你有幫助，歡迎透過 [Ko-fi](https://ko-fi.com/aghdoo) 支持後續的翻譯校對、字型維護與測試工作。
